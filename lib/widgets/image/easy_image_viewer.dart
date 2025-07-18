@@ -34,6 +34,7 @@ const _defaultCloseButtonTooltip = 'Close';
 Future<Dialog?> showImageViewer(BuildContext context, ImageProvider imageProvider,
     {bool immersive = true,
     void Function()? onViewerDismissed,
+    void Function(String)? onSaveImage,
     bool useSafeArea = false,
     bool swipeDismissible = false,
     bool doubleTapZoomable = false,
@@ -42,20 +43,18 @@ Future<Dialog?> showImageViewer(BuildContext context, ImageProvider imageProvide
     String closeButtonTooltip = _defaultCloseButtonTooltip,
     Color closeButtonColor = _defaultCloseButtonColor,
     List listImageUrl = const []}) {
-  return showImageViewerPager(
-    context,
-    SingleImageProvider(imageProvider),
-    immersive: immersive,
-    onViewerDismissed: onViewerDismissed != null ? (_) => onViewerDismissed() : null,
-    useSafeArea: useSafeArea,
-    swipeDismissible: swipeDismissible,
-    doubleTapZoomable: doubleTapZoomable,
-    backgroundColor: backgroundColor,
-    barrierColor: barrierColor,
-    closeButtonTooltip: closeButtonTooltip,
-    closeButtonColor: closeButtonColor,
-    listImageUrl: listImageUrl,
-  );
+  return showImageViewerPager(context, SingleImageProvider(imageProvider),
+      immersive: immersive,
+      onViewerDismissed: onViewerDismissed != null ? (_) => onViewerDismissed() : null,
+      useSafeArea: useSafeArea,
+      swipeDismissible: swipeDismissible,
+      doubleTapZoomable: doubleTapZoomable,
+      backgroundColor: backgroundColor,
+      barrierColor: barrierColor,
+      closeButtonTooltip: closeButtonTooltip,
+      closeButtonColor: closeButtonColor,
+      listImageUrl: listImageUrl,
+      onSaveImage: onSaveImage);
 }
 
 /// Shows the images provided by the [imageProvider] in a full-screen PageView [Dialog].
@@ -79,6 +78,7 @@ Future<Dialog?> showImageViewerPager(
   bool immersive = true,
   void Function(int)? onPageChanged,
   void Function(int)? onViewerDismissed,
+  void Function(String)? onSaveImage,
   bool useSafeArea = false,
   bool swipeDismissible = false,
   bool doubleTapZoomable = false,
@@ -104,6 +104,7 @@ Future<Dialog?> showImageViewerPager(
         immersive: immersive,
         onPageChanged: onPageChanged,
         onViewerDismissed: onViewerDismissed,
+        onSaveImage: onSaveImage,
         swipeDismissible: swipeDismissible,
         doubleTapZoomable: doubleTapZoomable,
         infinitelyScrollable: infinitelyScrollable,

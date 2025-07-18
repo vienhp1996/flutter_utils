@@ -7,6 +7,7 @@ void customShowImageViewer({
   required BuildContext context,
   required String imageUrl,
   bool isBase64Image = false,
+  void Function(String)? onSaveImage,
 }) async {
   ImageProvider imageProvider;
 
@@ -23,6 +24,12 @@ void customShowImageViewer({
     listImageUrl: [imageUrl],
     onViewerDismissed: () {
       print("dismissed");
+    },
+    onSaveImage: (image) {
+      // Handle the save image action here
+      if (onSaveImage != null) {
+        onSaveImage(image);
+      }
     },
   );
 }

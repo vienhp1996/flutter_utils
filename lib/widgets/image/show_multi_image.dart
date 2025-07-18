@@ -5,6 +5,7 @@ void customShowMultiImageViewer({
   required BuildContext context,
   required List listImageUrl,
   int initialIndex = 0,
+  void Function(String)? onSaveImage,
 }) async {
   List<NetworkImage> listImage = [];
   listImageUrl.forEach((element) {
@@ -29,6 +30,12 @@ void customShowMultiImageViewer({
       print("dismissed while on page $page");
     },
     listImageUrl: listImageUrl,
+    onSaveImage: (image) {
+      // Handle the save image action here
+      if (onSaveImage != null) {
+        onSaveImage(image);
+      }
+    },
   );
 }
 
