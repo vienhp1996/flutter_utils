@@ -1,6 +1,6 @@
 name: flutter_utils
 description: "Lib dùng chung cho các ứng dụng, bao gồm các tiện ích như: logger, intl, screenutil..."
-version: 0.0.2
+version: 0.0.3
 homepage:
 
 environment:
