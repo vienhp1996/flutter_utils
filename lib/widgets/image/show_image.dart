@@ -25,6 +25,7 @@ void customShowImageViewer({
     onViewerDismissed: () {
       print("dismissed");
     },
+    swipeDismissible: true,
     onSaveImage: (image) {
       // Handle the save image action here
       if (onSaveImage != null) {
