@@ -1,6 +1,6 @@
 name: flutter_utils
 description: "Lib dùng chung cho các ứng dụng, bao gồm các tiện ích như: logger, intl, screenutil..."
-version: 0.0.5
+version: 0.0.6
 homepage:
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.19.0
+  intl: ^0.20.2
   logger: ^2.2.0
   flutter_screenutil: ^5.9.0
   flutter_spinkit: ^5.1.0
@@ -19,7 +19,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
