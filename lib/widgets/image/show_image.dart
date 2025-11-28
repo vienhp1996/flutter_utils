@@ -5,29 +5,41 @@ import 'package:flutter_utils/widgets/image/easy_image_viewer.dart';
 
 void customShowImageViewer({
   required BuildContext context,
-  required String imageUrl,
+  String? imageUrl,
+  String? assetPath,
   bool isBase64Image = false,
   void Function(String)? onSaveImage,
-}) async {
-  ImageProvider imageProvider;
+}) {
+  late ImageProvider imageProvider;
 
-  if (isBase64Image) {
-    imageProvider = MemoryImage(base64Decode(imageUrl.replaceFirst(RegExp(r'data:image/[^;]+;base64,'), '')));
-  } else {
+  if (assetPath != null) {
+    // Ảnh từ assets
+    imageProvider = AssetImage(assetPath);
+  } else if (isBase64Image && imageUrl != null) {
+    // Ảnh base64
+    imageProvider = MemoryImage(
+      base64Decode(
+        imageUrl.replaceFirst(RegExp(r'data:image/[^;]+;base64,'), ''),
+      ),
+    );
+  } else if (imageUrl != null) {
+    // Ảnh mạng
     imageProvider = Image.network(imageUrl).image;
+  } else {
+    throw Exception("Cần truyền imageUrl hoặc assetPath");
   }
+
   showImageViewer(
     context,
     imageProvider,
     doubleTapZoomable: true,
     useSafeArea: true,
-    listImageUrl: [imageUrl],
-    onViewerDismissed: () {
-      print("dismissed");
-    },
+    listImageUrl: assetPath != null ? [assetPath] : [imageUrl!],
     swipeDismissible: true,
+    onViewerDismissed: () {
+      debugPrint("dismissed");
+    },
     onSaveImage: (image) {
-      // Handle the save image action here
       if (onSaveImage != null) {
         onSaveImage(image);
       }
